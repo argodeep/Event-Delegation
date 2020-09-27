@@ -1,0 +1,42 @@
+
+<!DOCTYPE htmt>
+<html>
+<title>Event Delegation</title>
+<style>
+    #parent {
+        border: 4px solid red;
+        padding: 20px;
+    }
+</style>
+<body>
+    <div id="parent">
+        <button id="child">Child</button></div>
+</body>
+<script>
+    const parent = document.getElementById('parent');
+    parent.addEventListener('click', function (e) {
+        console.log('parent clicked');
+    }
+
+        , {
+            capture: true
+        }
+
+    );
+
+    const child = document.getElementById('child');
+    child.addEventListener('click', function (e) {
+        // e.cancelBubble = true;
+        // e.preventDefault();
+        e.stopPropagation();
+        // e.stopImmediatePropagation();
+        console.log('child clicked');
+    }
+
+        , {
+            capture: false
+        }
+
+    );
+</script>
+</html>
